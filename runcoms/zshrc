@@ -1,13 +1,37 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# cd into Development
+function cdd {
+      cd ~/Development
+      if [ -e "$1" ]
+      then
+              cd $1
+      fi
+
+}
+compdef '_files -W "$HOME/Development"' cdd
+
+
+function tableflip {
+  echo "（╯°□°）╯ ┻━┻";
+}
+
+function dxdd {
+  if pgrep Xcode >/dev/null; then
+    echo "Cannot delete derived data while Xcode is running!"
+  else
+    echo "Deleting `cd ~/Library/Developer/Xcode; pwd`/DerivedData"
+    rm -rf ~/Library/Developer/Xcode/DerivedData
+  fi
+}
+
+alias be='bundle exec'
+alias home="vcsh dotfiles"
+
+# run z script
+. ~/bin/z.sh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

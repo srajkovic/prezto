@@ -271,4 +271,17 @@ if ! zstyle -t ':prezto:module:git:alias' skip 'yes'; then
   alias gwC='git clean -f'
   alias gwx='git rm -r'
   alias gwX='git rm -rf'
+  
+  # Stefan's additions that he doesn't feel like finding a place for
+  alias gb='git branch -v'
+  alias gd='git diff'
+  alias gl="git log --date=local"
+  alias gps="git pull && git submodule sync && git submodule update --init --recursive"
+  alias grc="git rebase --continue"
+  alias grim="git rebase --interactive master"
+  alias grm="git status | grep 'deleted:' | sed -e 's/^.*deleted: *//' -e 's/^/\"/g' -e 's/$/\"/g' | xargs -n1 git rm"
+  alias gu="$EDITOR ~/.gitconfig"
+  alias gum="echo 'Resetting master to the latest origin/master...' && git fetch && git update-ref refs/heads/master origin/master"
+  alias ungreen="git log --abbrev-commit --reverse --pretty=format:'%C(yellow)%h%Creset %C(bold)%s%Creset %an' origin/ci-master-distributed-latest..origin/master"
+  alias gph="git push heroku master"
 fi
