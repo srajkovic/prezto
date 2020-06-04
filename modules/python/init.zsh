@@ -147,14 +147,10 @@ if (( $+VIRTUALENVWRAPPER_VIRTUALENV || $+commands[virtualenv] )) && \
 fi
 
 # Load PIP completion.
-# Detect and use one available from among 'pip', 'pip2', 'pip3' variants
-if [[ -n "$PYENV_ROOT" ]]; then
-  for pip in pip{,2,3}; do
-    pip_command="$(pyenv which "$pip" 2>/dev/null)"
-    [[ -n "$pip_command" ]] && break
-  done
-  unset pip
-else
+if (( $#commands[(i)pip(|[23])] )); then
+  cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/prezto/pip-cache.zsh"
+
+  # Detect and use one available from among 'pip', 'pip2', 'pip3' variants
   pip_command="$commands[(i)pip(|[23])]"
 fi
 if [[ -n "$pip_command" ]]; then
