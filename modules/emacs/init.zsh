@@ -10,7 +10,7 @@ if [[ ! -d "$HOME/.cask" ]]; then
 fi
 
 # Prepend Cask bin directory.
-path=($HOME/.cask/bin $path)
+PATH=($HOME/.cask/bin $path)
 
 # Load Carton completion
 source "$HOME/.cask/etc/cask_completion.zsh" 2> /dev/null
